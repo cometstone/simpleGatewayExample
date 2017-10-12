@@ -30,6 +30,9 @@ func Start() {
 		Port:		Conf.Mysql.Port,
 		Database:	Conf.Mysql.Database,
 	})
+	//初始化etcd
+	initEtcd()
+
 
 
 

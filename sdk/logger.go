@@ -10,13 +10,13 @@ import (
 
 var Logger *zap.Logger
 //https://github.com/uber-go/zap/blob/master/example_test.go
-func InitLooger(lp string, lv string, isDebug bool, service string) {
+func InitLogger(lv string,lp string, isDebug bool, service string) {
 	js := fmt.Sprintf(`{
 		"level": "%s",
 		"encoding": "json",
-		"outputPaths" ["stdout","%s"],
+		"outputPaths": ["stdout","%s"],
 		"errorOutputPaths": ["stderr","%s"]
-	}`,lv,lp,lp, )
+	}`, lv, lp, lp)
 
 	var cfg zap.Config
 	if err := json.Unmarshal([]byte(js), &cfg); err != nil {

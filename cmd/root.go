@@ -21,6 +21,7 @@ import (
 	homedir "github.com/mitchellh/go-homedir"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
+	"simpleGatewayExample/gateway"
 )
 
 var cfgFile string
@@ -89,5 +90,5 @@ func initConfig() {
 }
 
 func start(cmd *cobra.Command, args []string) {
-
+	gateway.Start()
 }

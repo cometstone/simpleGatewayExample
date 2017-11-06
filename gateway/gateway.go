@@ -34,6 +34,9 @@ func Start() {
 	initEtcd()
 	//API更新服务初始化
 	initUpdateApi()
+	//etcd Watch
+	go watchUpstramServers()
+
 
 
 

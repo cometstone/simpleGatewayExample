@@ -15,7 +15,7 @@ import (
 	"sort"
 )
 
-type API struct {
+type Api struct {
 	// domain.group.service.version
 	// 只能由字母、数字、点组成
 	FullName string
@@ -65,7 +65,7 @@ func load(rows *sql.Rows) {
 
 	//添加到服务组里
 
-	api := &API{}
+	api := &Api{}
 	api.FullName = rowApi.FullName
 	api.Method = rowApi.Method
 	api.ProxyMode = rowApi.ProxyMode

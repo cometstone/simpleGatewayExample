@@ -32,6 +32,7 @@ func Start() {
 	})
 	//初始化etcd
 	initEtcd()
+	//API更新服务初始化
 	initUpdateApi()
 
 

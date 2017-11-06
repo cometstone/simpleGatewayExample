@@ -6,6 +6,8 @@ import (
 	"simpleGatewayExample/common"
 	"simpleGatewayExample/sdk"
 	"simpleGatewayExample/global/servicelist"
+	"sync"
+	"github.com/labstack/echo"
 )
 
 
@@ -37,8 +39,15 @@ func Start() {
 	//etcd Watch
 	go watchUpstramServers()
 
+	apis = &Apis{
+		&sync.Map{},
+	}
+	//mysql 加载服务信息
+	apis.LoadAll()
 
-
+	e := echo.New()
+	e.Any("/*", apiRoute)
+	e.Logger.Fatal(e.Start(":" + Conf.Api.GatewayPort))
 
 
 }

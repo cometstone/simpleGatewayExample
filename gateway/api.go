@@ -46,7 +46,7 @@ func (a *Apis) LoadAll() {
 	query := fmt.Sprintf("select * from api")
 	rows,err := db.Query(query)
 	if err != nil {
-		Logger.Fatal("query gateway.api error ",zap.Error(err))
+		Logger.Fatal("query simpleGatewayExample.api error ",zap.Error(err))
 	}
 
 	for rows.Next() {

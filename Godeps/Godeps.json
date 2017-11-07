@@ -100,9 +100,54 @@
 			"Rev": "76626ae9c91c4f2a10f34cad8ce83ea42c93bb75"
 		},
 		{
+			"ImportPath": "github.com/klauspost/compress/flate",
+			"Comment": "v1.2.1-11-gea08389",
+			"Rev": "ea08389e0dc46025380296f7dd04ab0e8de36adb"
+		},
+		{
+			"ImportPath": "github.com/klauspost/compress/gzip",
+			"Comment": "v1.2.1-11-gea08389",
+			"Rev": "ea08389e0dc46025380296f7dd04ab0e8de36adb"
+		},
+		{
+			"ImportPath": "github.com/klauspost/compress/zlib",
+			"Comment": "v1.2.1-11-gea08389",
+			"Rev": "ea08389e0dc46025380296f7dd04ab0e8de36adb"
+		},
+		{
+			"ImportPath": "github.com/klauspost/cpuid",
+			"Comment": "v1.1",
+			"Rev": "ae7887de9fa5d2db4eaa8174a7eff2c1ac00f2da"
+		},
+		{
+			"ImportPath": "github.com/labstack/echo",
+			"Comment": "3.2.3-8-gb28538b",
+			"Rev": "b28538b2e3f5446fe6e0e47ee34cd74b662ca2ab"
+		},
+		{
+			"ImportPath": "github.com/labstack/gommon/color",
+			"Comment": "0.2.3",
+			"Rev": "57409ada9da0f2afad6664c49502f8c50fbd8476"
+		},
+		{
+			"ImportPath": "github.com/labstack/gommon/log",
+			"Comment": "0.2.3",
+			"Rev": "57409ada9da0f2afad6664c49502f8c50fbd8476"
+		},
+		{
 			"ImportPath": "github.com/magiconair/properties",
 			"Comment": "v1.7.3-4-g8d7837e",
 			"Rev": "8d7837e64d3c1ee4e54a880c5a920ab4316fc90a"
+		},
+		{
+			"ImportPath": "github.com/mattn/go-colorable",
+			"Comment": "v0.0.9-6-gad5389d",
+			"Rev": "ad5389df28cdac544c99bd7b9161a0b5b6ca9d1b"
+		},
+		{
+			"ImportPath": "github.com/mattn/go-isatty",
+			"Comment": "v0.0.3-1-ga5cdd64",
+			"Rev": "a5cdd64afdee435007ee3e9f6ed4684af949d568"
 		},
 		{
 			"ImportPath": "github.com/mitchellh/go-homedir",
@@ -149,6 +194,29 @@
 			"Rev": "d9cca5ef33035202efb1586825bdbb15ff9ec3ba"
 		},
 		{
+			"ImportPath": "github.com/valyala/bytebufferpool",
+			"Rev": "e746df99fe4a3986f4d4f79e13c1e0117ce9c2f7"
+		},
+		{
+			"ImportPath": "github.com/valyala/fasthttp",
+			"Comment": "v20160617-118-g70ceadd",
+			"Rev": "70ceaddfae639b5f0eca290382de18f64d5aa62d"
+		},
+		{
+			"ImportPath": "github.com/valyala/fasthttp/fasthttputil",
+			"Comment": "v20160617-118-g70ceadd",
+			"Rev": "70ceaddfae639b5f0eca290382de18f64d5aa62d"
+		},
+		{
+			"ImportPath": "github.com/valyala/fasthttp/stackless",
+			"Comment": "v20160617-118-g70ceadd",
+			"Rev": "70ceaddfae639b5f0eca290382de18f64d5aa62d"
+		},
+		{
+			"ImportPath": "github.com/valyala/fasttemplate",
+			"Rev": "dcecefd839c4193db0d35b88ec65b4c12d360ab0"
+		},
+		{
 			"ImportPath": "go.uber.org/atomic",
 			"Comment": "v1.2.0-10-g54f72d3",
 			"Rev": "54f72d32435d760d5604f17a82e2435b28dc4ba5"
@@ -187,6 +255,14 @@
 			"ImportPath": "go.uber.org/zap/zapcore",
 			"Comment": "v1.7.1",
 			"Rev": "35aad584952c3e7020db7b839f6b102de6271f89"
+		},
+		{
+			"ImportPath": "golang.org/x/crypto/acme",
+			"Rev": "9419663f5a44be8b34ca85f08abc5fe1be11f8a3"
+		},
+		{
+			"ImportPath": "golang.org/x/crypto/acme/autocert",
+			"Rev": "9419663f5a44be8b34ca85f08abc5fe1be11f8a3"
 		},
 		{
 			"ImportPath": "golang.org/x/net/context",

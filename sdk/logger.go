@@ -40,3 +40,10 @@ func InitLogger(lv string,lp string, isDebug bool, service string) {
 	// Output:
 	// {"level":"info","message":"logger初始化成功","service":"xxx"}
 }
+
+func DebugLog(requestID string, debugOn bool, msg string, fields ...zapcore.Field) {
+	if debugOn {
+		Logger.Info(msg, append(fields, zap.String("rid", requestID))...)
+	}
+}
+

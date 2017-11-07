@@ -101,7 +101,7 @@ func apiRoute(c echo.Context) error {
 	}
 
 	Logger.Info("api请求成功",zap.String("rid",rid),zap.Int64("TimeDifference",time.Now().Sub(ts).Nanoseconds()/1000))
-	sdk.DebugLog(rid,c.Get("debug_on").(bool),"api请求返回body",zap.String("body",resp.Body()))
+	sdk.DebugLog(rid, c.Get("debug_on").(bool), "api请求返回body", zap.String("body", string(resp.Body())))
 	return c.String(http.StatusOK, string(resp.Body()))
 
 }

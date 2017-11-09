@@ -79,13 +79,50 @@ func apiCreate(c echo.Context) error {
 		},
 	})
 
-
-	return nil
 }
 
 func apiUpdate(c echo.Context) error {
+	c.Response().Header().Set("Access-Control-allow-Origin","*")
+	rid := common.RequestID()
+	ts,debugOn := sdk.LogExtra(c)
 
-	return nil
+	api := &gdata.API{}
+	api.FullName = c.FormValue("api_name")
+	api.Method = c.FormValue("method")
+	api.ProxyMode = c.FormValue("proxy_mode")
+	api.UpstreamMode = c.FormValue("upstream_mode")
+	api.UpstreamValue = c.FormValue("upstream_value")
+
+	if api.FullName == "" {
+		Logger.Info("api_name不能为空", zap.String("rid", rid))
+		return c.JSON(http.StatusOK, &ExtApiRes{
+			Suc: false,
+			Data: map[string]interface{}{
+				"msg": "api名不能为空",
+			},
+		})
+	}
+
+	Logger.Info("api 更新",zap.String("rid",rid),zap.Any("api",*api))
+
+	query := fmt.Sprintf("UPDATE api SET `method`='%s',`proxy_mode`='%s',`upstream_mode`='%s',`upstream_value`='%s' WHERE `full_name`='%s'",
+		api.Method, api.ProxyMode, api.UpstreamMode, api.UpstreamValue, api.FullName)
+	sdk.DebugLog(rid, debugOn, "更新api sql", zap.String("sql", query))
+
+	_,err := db.Exec(query)
+	if err != nil {
+		Logger.Info("api update  error", zap.String("rid", rid), zap.Error(err), zap.String("query", query))
+		return c.String(http.StatusOK, "update api error")
+	}
+
+	Logger.Info("api更新成功", zap.String("rid", rid), zap.Int64("TimeDifference", time.Now().Sub(ts).Nanoseconds()/1000))
+
+	updateApi(api.FullName,2)
+
+	return c.JSON(http.StatusOK,&ExtApiRes{
+		Suc:true,
+	})
+
 }
 
 func apiQuery(c echo.Context) error {

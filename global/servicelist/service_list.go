@@ -5,3 +5,5 @@ package servicelist
 //	内部ApiName : 公司.产品.系统.接口
 // 	simpleGatewayExample.gateway
 const SimpleGatewayExampleGateway = "cometstone.simpleGatewayExample.gateway"
+// simpleGatewayExample.Manager
+const SimpleGatewayExampleManager = "cometstone.simpleGatewayExample.manager"

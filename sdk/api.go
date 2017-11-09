@@ -35,7 +35,7 @@ func StoreServersByApi(cli *clientv3.Client, servers []*gdata.ServerInfo) chan e
 					continue
 				}
 			}
-			//每分钟上报一次服务信息
+			//每分钟更新一次务信息
 			time.Sleep(time.Second * gconst.APIStoreInterval)
 		}
 

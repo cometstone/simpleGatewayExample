@@ -6,6 +6,7 @@ import (
 	"database/sql"
 	"simpleGatewayExample/sdk"
 	"simpleGatewayExample/global/servicelist"
+	"github.com/labstack/echo"
 )
 
 var Logger *zap.Logger
@@ -28,5 +29,14 @@ func Start() {
 
 	//初始化 获取在活的服务器列表
 	initGatewayUpdate()
+
+	e :=echo.New()
+	e.POST("/api/create", apiCreate)
+	e.POST("/api/update", apiUpdate)
+	e.POST("/api/query", apiQuery)
+	e.POST("/api/delete", apiDelete)
+	e.GET("/api/list", apiList)
+
+	e.Logger.Fatal(e.Start(":" + Conf.Admin.ManagerPort))
 
 }

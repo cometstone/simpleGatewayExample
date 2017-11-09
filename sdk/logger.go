@@ -6,6 +6,8 @@ import (
 	"encoding/json"
 	"go.uber.org/zap/zapcore"
 	"log"
+	"github.com/labstack/echo"
+	"time"
 )
 
 var Logger *zap.Logger
@@ -45,5 +47,17 @@ func DebugLog(requestID string, debugOn bool, msg string, fields ...zapcore.Fiel
 	if debugOn {
 		Logger.Info(msg, append(fields, zap.String("rid", requestID))...)
 	}
+}
+
+func LogExtra(c echo.Context) (time.Time, bool) {
+	ts := time.Now()
+	var deBugOn bool
+	if c.FormValue("log_debug") == "on" {
+		deBugOn = true
+	}else {
+		deBugOn = false
+	}
+
+	return ts,deBugOn
 }
 

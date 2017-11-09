@@ -5,6 +5,9 @@ package gconst
 const APIStoreInterval = 60
 const APILeaseTime = APIStoreInterval + 10
 
+//更新API间隔(秒)
+const APIUpdateInterval = 120
+
 // ApisRootPath 是通过Api查找服务器地址时，etcd中的根目录
 const APIsRootPath = "/api/servers/"
 const InApiRootPath = "/in/api/servers/"

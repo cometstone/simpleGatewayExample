@@ -8,7 +8,7 @@ import (
 	"simpleGatewayExample/global/servicelist"
 )
 
-var Looger *zap.Logger
+var Logger *zap.Logger
 var Conf *common.Config
 
 var db *sql.DB

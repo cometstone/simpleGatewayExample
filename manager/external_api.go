@@ -126,13 +126,80 @@ func apiUpdate(c echo.Context) error {
 }
 
 func apiQuery(c echo.Context) error {
+	c.Response().Header().Set("Access-Control-allow-Origin","*")
+	rid := common.RequestID()
+	ts,debugOn := sdk.LogExtra(c)
 
-	return nil
+	apiName := c.FormValue("api_name")
+	query := fmt.Sprintf("SELECT * FROM api WHERE `full_name`='%s'",apiName)
+
+	Logger.Info("api查询",zap.String("rid",rid),zap.String("query",query))
+
+	rows,err := db.Query(query)
+	if err != nil {
+		Logger.Info("api query error", zap.String("rid", rid), zap.Error(err), zap.String("query", query))
+		return c.String(http.StatusOK,"api query error")
+	}
+
+	defer rows.Close()
+
+	var api *gdata.API
+
+	for rows.Next() {
+		tempApi := &gdata.API{}
+		err := rows.Scan(&tempApi.ID, &tempApi.FullName, &tempApi.Company, &tempApi.Product,
+			&tempApi.System, &tempApi.Interface, &tempApi.Version, &tempApi.Method, &tempApi.ProxyMode, &tempApi.UpstreamMode, &tempApi.UpstreamValue)
+		if err != nil {
+			Logger.Info("api scan error", zap.String("rid", rid), zap.Error(err), zap.String("query", query))
+			return c.String(http.StatusOK, "api scan error")
+		}
+		api = tempApi
+	}
+
+	if api == nil {
+		return c.JSON(http.StatusOK,&ExtApiRes{
+			Suc:false,
+			Data:map[string]interface{}{
+				"msg":"api 不存在",
+			},
+		})
+	}
+
+	Logger.Info("api查询成功", zap.String("rid", rid), zap.Int64("TimeDifference", time.Now().Sub(ts).Nanoseconds()/1000))
+	sdk.DebugLog(rid, debugOn, "查询api", zap.Any("api", api))
+
+	return c.JSON(http.StatusOK, &ExtApiRes{
+		Suc: true,
+		Data: map[string]interface{}{
+			"api": api,
+		},
+	})
+
 }
 
 func apiDelete(c echo.Context) error {
+	c.Response().Header().Set("Access-Control-Allow-Origin","*")
+	rid := common.RequestID()
+	ts,debugOn :=sdk.LogExtra(c)
 
-	return nil
+	apiAll := c.FormValue("apis")
+
+	Logger.Info("api删除",zap.String("rid",rid),zap.String("api_name",apiAll))
+
+	apis := strings.Split(apiAll,",")
+	for _, api := range apis {
+		query := fmt.Sprintf("DELETE FROM api WHERE `full_name` ='%s' ",api)
+		sdk.DebugLog(rid, debugOn, "删除api", zap.String("query", query))
+		_,err := db.Exec(query)
+		if err != nil {
+			Logger.Info("api delete error ",zap.String("rid",rid),zap.Error(err),zap.String("query",query))
+		}
+	}
+
+	Logger.Info("api删除成功", zap.String("rid", rid), zap.Int64("TimeDifference", time.Now().Sub(ts).Nanoseconds()/1000))
+	updateApi(apiAll, 3)
+
+	return c.String(http.StatusOK,"success")
 }
 
 func apiList(c echo.Context) error {
